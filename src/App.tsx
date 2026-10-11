@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import * as Select from "@radix-ui/react-select";
 import { DayPicker } from "react-day-picker";
@@ -110,7 +110,7 @@ export default function App() {
       setChatMessages((m) => [...m, { role: "assistant", content: error instanceof Error ? error.message : "The assistant is unavailable. Please try again." }]);
     } finally { setChatBusy(false); }
   }
-  function submitInquiry(e: React.FormEvent) {
+  function submitInquiry(e: FormEvent) {
     e.preventDefault();
     if (service === "flights") {
       if (origin.code === destination.code) { setNotice("Choose different departure and destination airports."); return; }
