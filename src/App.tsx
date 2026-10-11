@@ -74,6 +74,7 @@ function SelectField({ label, value, onChange, options }: { label: string; value
 
 export default function App() {
   const [service, setService] = useState<Service>("flights");
+  const [requestType, setRequestType] = useState("Family holiday");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [trip, setTrip] = useState<TripType>("round-trip");
   const [origin, setOrigin] = useState(airports.find((a) => a.code === "KHI")!);
@@ -94,6 +95,7 @@ export default function App() {
 
   function selectService(next: Service) {
     setService(next); setDrawerOpen(false); setNotice("");
+    setRequestType(next === "umrah" ? "Umrah pilgrimage" : next === "visa" ? "Visa guidance" : next === "hotels" ? "Accommodation" : next === "travel" ? "Family holiday" : "Round trip");
   }
   function changePassenger(key: keyof typeof passengers, delta: number) {
     setPassengers((p) => ({ ...p, [key]: Math.max(key === "adults" ? 1 : 0, Math.min(key === "infants" ? p.adults : 9, p[key] + delta)) }));
@@ -165,7 +167,7 @@ export default function App() {
                 <div className="form-row"><SelectField label="CABIN CLASS" value={cabin} onChange={setCabin} options={["Economy", "Premium economy", "Business", "First class"]}/><SelectField label="PREFERRED AIRLINE" value={airline} onChange={setAirline} options={["Any airline", "PIA", "Saudia", "Emirates", "Qatar Airways", "Etihad Airways", "Airblue", "Fly Jinnah", "Flynas"]}/></div>
                 <div className="field"><label>TRAVELLERS</label><div className="passenger-grid">{([{id:"adults" as const,label:"Adults",detail:"12+ years"},{id:"children" as const,label:"Children",detail:"2–11 years"},{id:"infants" as const,label:"Infants",detail:"Under 2"}]).map((p) => <div className="passenger-item" key={p.id}><div><strong>{p.label}</strong><small>{p.detail}</small></div><div className="stepper"><button type="button" aria-label={"Remove " + p.label} disabled={passengers[p.id] <= (p.id === "adults" ? 1 : 0)} onClick={() => changePassenger(p.id, -1)}><Minus size={14}/></button><span>{passengers[p.id]}</span><button type="button" aria-label={"Add " + p.label} disabled={passengers[p.id] >= 9 || (p.id === "infants" && passengers.infants >= passengers.adults)} onClick={() => changePassenger(p.id, 1)}><Plus size={14}/></button></div></div>)}</div></div>
               </> : <>
-                <div className="form-row"><SelectField label="DESTINATION" value={destination.country} onChange={(country) => {const match = airports.find((a) => a.country === country); if (match) setDestination(match);}} options={Array.from(new Set(airports.map((a) => a.country))).sort()}/><SelectField label="TRIP TYPE" value={service === "umrah" ? "Umrah pilgrimage" : service === "visa" ? "Visa guidance" : service === "hotels" ? "Accommodation" : "Family holiday"} onChange={() => {}} options={service === "umrah" ? ["Umrah pilgrimage", "Ramadan Umrah", "Family Umrah"] : service === "visa" ? ["Visa guidance", "Appointment guidance", "Document checklist"] : service === "hotels" ? ["Accommodation", "Family room", "Near Haram"] : ["Family holiday", "Business trip", "Honeymoon", "Custom itinerary"]}/></div>
+                <div className="form-row"><SelectField label="DESTINATION" value={destination.country} onChange={(country) => {const match = airports.find((a) => a.country === country); if (match) setDestination(match);}} options={Array.from(new Set(airports.map((a) => a.country))).sort()}/><SelectField label="REQUEST TYPE" value={requestType} onChange={setRequestType} options={service === "umrah" ? ["Umrah pilgrimage", "Ramadan Umrah", "Family Umrah"] : service === "visa" ? ["Visa guidance", "Appointment guidance", "Document checklist"] : service === "hotels" ? ["Accommodation", "Family room", "Near Haram"] : ["Family holiday", "Business trip", "Honeymoon", "Custom itinerary"]}/></div>
                 <div className="form-row"><DatePicker label="PREFERRED START DATE" value={depart} onChange={setDepart} placeholder="Choose a date"/><DatePicker label="PREFERRED END DATE" value={returnDate} onChange={setReturnDate} minDate={depart} placeholder="Choose a date"/></div>
                 <div className="field"><label>TRAVELLERS</label><div className="passenger-grid">{([{id:"adults" as const,label:"Adults",detail:"12+ years"},{id:"children" as const,label:"Children",detail:"2–11 years"},{id:"infants" as const,label:"Infants",detail:"Under 2"}]).map((p) => <div className="passenger-item" key={p.id}><div><strong>{p.label}</strong><small>{p.detail}</small></div><div className="stepper"><button type="button" disabled={passengers[p.id] <= (p.id === "adults" ? 1 : 0)} onClick={() => changePassenger(p.id,-1)}><Minus size={14}/></button><span>{passengers[p.id]}</span><button type="button" disabled={passengers[p.id] >= 9} onClick={() => changePassenger(p.id,1)}><Plus size={14}/></button></div></div>)}</div></div>
               </>}
