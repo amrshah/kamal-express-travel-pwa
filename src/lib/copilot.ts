@@ -46,6 +46,7 @@ export async function sendTravelMessage(
 }
 
 export function getCopilotStatus() {
+  if (copilotConfiguration.copilotKitRuntimeConfigured) return "CopilotKit runtime";
   if (copilotConfiguration.chatConfigured || copilotConfiguration.aguiConfigured) return "Configured endpoint";
   return "Demo mode";
 }
