@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { CopilotKit, CopilotPopup } from "@copilotkit/react-core/v2";
-import "@copilotkit/react-core/v2/styles.css";
 
 /**
  * Optional self-hosted CopilotKit runtime. Configure this only when Alamia
