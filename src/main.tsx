@@ -1,15 +1,15 @@
-import React from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { CopilotKitLayer } from "./components/CopilotKitLayer";
 import "./styles.css";
 
 createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <StrictMode>
     <CopilotKitLayer>
       <App />
     </CopilotKitLayer>
-  </React.StrictMode>
+  </StrictMode>
 );
 
 if ("serviceWorker" in navigator) {
