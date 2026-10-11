@@ -287,3 +287,28 @@ h1,h2,p{margin-top:0}
   .step-chip{display:none}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+.inspiration-strip{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:12px;margin:0 0 9px}
+.inspiration-card{position:relative;min-width:0;height:146px;overflow:hidden;border:0;border-radius:15px;padding:0;background:#16445d;text-align:left;color:#fff;isolation:isolate}
+.inspiration-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s ease;z-index:-2}
+.inspiration-card:hover img{transform:scale(1.045)}
+.inspiration-card:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#08253bd9 0%,#08253b80 52%,#08253b10 100%);z-index:-1}
+.inspiration-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:15px}
+.inspiration-overlay small{font-size:8px;letter-spacing:1.15px;font-weight:800;color:#d9f4ff;margin-bottom:6px}
+.inspiration-overlay strong{font:800 15px/1.25 Manrope,sans-serif;letter-spacing:-.2px;max-width:220px}
+.inspiration-overlay>span{display:flex;align-items:center;gap:6px;margin-top:8px;color:#e4f7ff;font-size:10px;font-weight:700}
+.photo-credit{font-size:9px;line-height:1.6;color:#98a5b4;text-align:right;margin:-1px 2px 19px}
+.photo-credit a{color:#70889a;text-decoration:underline;text-underline-offset:2px}
+.photo-credit a:hover{color:#0877a8}
+@media(max-width:1180px){.inspiration-card{height:132px}.inspiration-overlay{padding:12px}.inspiration-overlay strong{font-size:13px}}
+@media(max-width:640px){
+  .inspiration-strip{grid-template-columns:1fr 1fr;gap:9px;margin-bottom:8px}
+  .inspiration-card{height:132px;border-radius:13px}
+  .inspiration-card:first-child{grid-column:1/-1;height:156px}
+  .inspiration-overlay{padding:12px}
+  .inspiration-overlay small{font-size:8px}
+  .inspiration-overlay strong{font-size:14px}
+  .inspiration-overlay>span{font-size:10px;margin-top:7px}
+  .photo-credit{text-align:left;margin:0 2px 16px;font-size:9px}
+}
