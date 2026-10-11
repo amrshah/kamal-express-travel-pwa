@@ -1,0 +1,19 @@
+{
+  "name": "Kamal Express Travel Assistant",
+  "short_name": "Kamal Express",
+  "description": "Travel assistance for flights, visas, Umrah and hotels.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0868e9",
+  "background_color": "#f4f7fc",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
