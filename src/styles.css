@@ -97,11 +97,12 @@ h1,h2,p{margin-top:0}
 .date-empty{color:#94a0b0;font-weight:500}
 .select-trigger{justify-content:space-between;font-size:12px;font-weight:600}
 .select-trigger>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.passenger-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.passenger-item{display:flex;justify-content:space-between;align-items:center;gap:6px;min-width:0;padding:12px 9px;border:1px solid #e1e8ef;border-radius:12px}
-.passenger-item>div:first-child{min-width:0}
-.passenger-item strong{display:block;font-size:11px}
-.passenger-item small{display:block;font-size:9px;color:#8b98a9;margin-top:4px;white-space:nowrap}
+.passenger-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px}
+.passenger-item{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;padding:13px 12px;border:1px solid #e1e8ef;border-radius:12px;background:#fff}
+.passenger-item>div:first-child{min-width:0;flex:1}
+.passenger-item strong{display:block;font-size:12px;line-height:1.35;color:#23384e}
+.passenger-item small{display:block;font-size:10px;line-height:1.4;color:#7f8da0;margin-top:5px;white-space:normal;overflow-wrap:anywhere}
+.passenger-item .stepper{gap:6px}
 .stepper{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .stepper button{height:27px;width:27px;display:grid;place-items:center;background:#fff;border:1px solid #dce5ee;border-radius:8px;color:#45627b}
 .stepper button:hover:not(:disabled){border-color:#9ac7d9;color:#0877a8}
