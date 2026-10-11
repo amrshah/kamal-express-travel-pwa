@@ -57,7 +57,7 @@ function DatePicker({ label, value, onChange, minDate, placeholder }: { label: s
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild><button type="button" className={"date-trigger " + (!value ? "date-empty" : "")}><CalendarDays size={18}/><span>{value ? format(value, "EEE, d MMM yyyy") : placeholder}</span><ChevronDown size={15} className="muted-icon"/></button></Popover.Trigger>
       <Popover.Portal><Popover.Content className="calendar-popover" sideOffset={8} align="start">
-        <DayPicker mode="single" selected={value} onSelect={(day) => { onChange(day); if (day) setOpen(false); }} disabled={minDate ? { before: minDate } : { before: startOfDay(new Date()) }} startMonth={new Date()} defaultMonth={value ?? minDate ?? new Date()} showOutsideDays />
+        <DayPicker mode="single" selected={value} onSelect={(day) => { onChange(day); if (day) setOpen(false); }} disabled={minDate ? { before: minDate } : { before: startOfDay(new Date()) }} startMonth={new Date()} defaultMonth={value ?? minDate ?? new Date()} showOutsideDays fixedWeeks />
         <div className="calendar-foot"><button type="button" onClick={() => { onChange(undefined); setOpen(false); }}>Clear date</button><button type="button" onClick={() => { onChange(addDays(new Date(), 7)); setOpen(false); }}>Next week</button></div>
       </Popover.Content></Popover.Portal>
     </Popover.Root>
@@ -131,7 +131,7 @@ export default function App() {
   return <div className="app-shell">
     {drawerOpen && <button className="drawer-scrim" aria-label="Close navigation" onClick={() => setDrawerOpen(false)}/>}
     <aside className={"sidebar " + (drawerOpen ? "sidebar-open" : "")}>
-      <div className="brand"><span className="brand-mark"><Plane size={23}/></span><span><strong>Kamal Express</strong><small>Travel, thoughtfully planned</small></span><button className="icon-button drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu"><X size={21}/></button></div>
+      <div className="brand"><img className="brand-logo" src="https://kamalexpress.com.pk/logo.jpeg" alt="Kamal Express" onError={(event) => { event.currentTarget.style.display = "none"; }} /><span className="brand-tagline">Travel, thoughtfully planned</span><button className="icon-button drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu"><X size={21}/></button></div>
       <div className="nav-section-label">YOUR JOURNEY</div><nav className="nav-list">{renderNav(true)}</nav>
       <div className="sidebar-spacer"/>
       <div className="support-card"><span className="support-icon"><MessageCircle size={18}/></span><strong>Prefer personal help?</strong><p>Our team can help you choose the right next step.</p><button onClick={() => sendMessage("I'd like to speak with a travel expert.")}>Talk to our team <ArrowRight size={15}/></button></div>
