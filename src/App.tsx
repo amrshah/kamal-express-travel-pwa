@@ -104,7 +104,7 @@ export default function App() {
     setChatMessages((m) => [...m, { role: "user", content: value }]);
     setChatInput(""); setChatBusy(true);
     try {
-      const reply = await sendTravelMessage(value, { surface: "kamal-express-pwa", service, locale: "en-PK" });
+      const reply = await sendTravelMessage(value, { surface: "kamal-express-pwa", service, locale: "en-PK" }, chatMessages);
       setChatMessages((m) => [...m, { role: "assistant", content: reply }]);
     } catch (error) {
       setChatMessages((m) => [...m, { role: "assistant", content: error instanceof Error ? error.message : "The assistant is unavailable. Please try again." }]);
