@@ -3,8 +3,7 @@ import * as Popover from "@radix-ui/react-popover";
 import * as Select from "@radix-ui/react-select";
 import { DayPicker } from "react-day-picker";
 import {
-  ArrowDownUp, ArrowRight, Bot, CalendarDays, Check, ChevronDown, ChevronLeft,
-  ChevronRight, CircleHelp, Compass, Hotel, Menu, MessageCircle, Minus, Plane,
+  ArrowDownUp, ArrowRight, Bot, CalendarDays, Check, ChevronDown, ChevronRight, CircleHelp, Compass, Hotel, Menu, MessageCircle, Minus, Plane,
   Plus, Search, Send, ShieldCheck, Sparkles, Ticket, Users, X, MoonStar, Globe2
 } from "lucide-react";
 import { format, addDays, startOfDay } from "date-fns";
@@ -148,6 +147,21 @@ export default function App() {
       <div className="page-content">
         <section className="welcome-row"><div><div className="eyebrow"><Sparkles size={14}/> YOUR JOURNEY STARTS HERE</div><h1>Where would you like to go?</h1><p>Thoughtful travel planning starts with a few details. We’ll help you take it from there.</p></div><div className="welcome-art"><Globe2 size={26}/><span>Made for your journey</span></div></section>
 
+        <section className="inspiration-strip" aria-label="Travel inspiration">
+          <button type="button" className="inspiration-card inspiration-flight" onClick={() => selectService("flights")}>
+            <img src="https://images.pexels.com/photos/12955787/pexels-photo-12955787.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Airplane seen through airport terminal windows" loading="lazy" />
+            <span className="inspiration-overlay"><small>YOUR NEXT ADVENTURE</small><strong>Find your flight</strong><span>Explore routes <ArrowRight size={14}/></span></span>
+          </button>
+          <button type="button" className="inspiration-card inspiration-umrah" onClick={() => selectService("umrah")}>
+            <img src="https://images.pexels.com/photos/35564285/pexels-photo-35564285/free-photo-of-kaaba-during-hajj-pilgrimage-at-masjid-al-haram.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Pilgrims gathered around the Kaaba in Makkah" loading="lazy" />
+            <span className="inspiration-overlay"><small>A MEANINGFUL JOURNEY</small><strong>Plan your Umrah</strong><span>Explore options <ArrowRight size={14}/></span></span>
+          </button>
+          <button type="button" className="inspiration-card inspiration-holiday" onClick={() => selectService("travel")}>
+            <img src="https://images.pexels.com/photos/17159660/pexels-photo-17159660/free-photo-of-people-enjoying-vacation-on-exotic-beach.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Tropical beach with palm trees" loading="lazy" />
+            <span className="inspiration-overlay"><small>MAKE TIME FOR YOU</small><strong>Discover somewhere new</strong><span>Plan a getaway <ArrowRight size={14}/></span></span>
+          </button>
+        </section>
+        <div className="photo-credit">Travel inspiration photos from <a href="https://www.pexels.com/photo/an-airplane-departing-from-the-airport-12955787/" target="_blank" rel="noreferrer">Atlantic Ambience</a>, <a href="https://www.pexels.com/photo/kaaba-during-hajj-pilgrimage-at-masjid-al-haram-35564285/" target="_blank" rel="noreferrer">Fatih Turan</a> and <a href="https://www.pexels.com/photo/people-enjoying-vacation-on-exotic-beach-17159660/" target="_blank" rel="noreferrer">Kraken Media</a> on <a href="https://www.pexels.com/license/" target="_blank" rel="noreferrer">Pexels</a>.</div>
         <section className="service-grid" aria-label="Travel services">
           {(["flights", "visa", "umrah", "hotels", "travel"] as Service[]).map((id) => {
             const meta = serviceMeta[id]; const Icon = meta.icon;
