@@ -1,3 +1,5 @@
+import animate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -18,5 +20,5 @@ export default {
       boxShadow: { soft: "0 12px 34px rgba(15, 46, 74, 0.08)" }
     }
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [animate]
 };
