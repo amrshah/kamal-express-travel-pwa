@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
-import { CopilotKit } from "@copilotkit/react-core";
-import { CopilotPopup } from "@copilotkit/react-ui";
+import { CopilotKit, CopilotPopup } from "@copilotkit/react-core/v2";
+import "@copilotkit/react-core/v2/styles.css";
 
 /**
- * Optional self-hosted CopilotKit runtime. This URL must point to a compatible
- * CopilotKit runtime endpoint, not directly to the raw Alamia AG-UI SSE route.
- * No hosted CopilotKit Intelligence service is required by this frontend layer.
+ * Optional self-hosted CopilotKit runtime. Configure this only when Alamia
+ * exposes a compatible runtime adapter. Do not point it at a raw AG-UI SSE
+ * endpoint; the application/runtime adapter owns protocol translation.
+ * This uses no CopilotKit Intelligence or hosted CopilotKit service.
  */
 export function CopilotKitLayer({ children }: { children: ReactNode }) {
   const runtimeUrl = import.meta.env.VITE_COPILOT_RUNTIME_URL?.trim();
@@ -14,13 +15,7 @@ export function CopilotKitLayer({ children }: { children: ReactNode }) {
   return (
     <CopilotKit runtimeUrl={runtimeUrl}>
       {children}
-      <CopilotPopup
-        labels={{
-          title: "Kamal Express travel copilot",
-          initial: "Assalamu alaikum! How can I help you plan your journey?",
-          placeholder: "Ask about your trip…"
-        }}
-      />
+      <CopilotPopup />
     </CopilotKit>
   );
 }
