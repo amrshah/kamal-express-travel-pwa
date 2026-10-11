@@ -1,20 +1,16 @@
 import type { ReactNode } from "react";
-import { CopilotKit, CopilotPopup } from "@copilotkit/react-core/v2";
 
 /**
- * Optional self-hosted CopilotKit runtime. Configure this only when Alamia
- * exposes a compatible runtime adapter. Do not point it at a raw AG-UI SSE
- * endpoint; the application/runtime adapter owns protocol translation.
- * This uses no CopilotKit Intelligence or hosted CopilotKit service.
+ * Build-safe placeholder for the optional self-hosted CopilotKit popup.
+ *
+ * The current @copilotkit/react-core/v2 entrypoint imports a stylesheet that
+ * conflicts with this app's Tailwind v3 PostCSS pipeline (its @layer base is
+ * processed as a separate root). Keep the main travel PWA buildable while the
+ * optional popup is disabled. The app's own AG-UI adapter remains independent.
+ *
+ * Re-enable this layer after adopting a CSS pipeline compatible with the
+ * CopilotKit v2 stylesheet; do not point a runtime at a raw AG-UI SSE endpoint.
  */
 export function CopilotKitLayer({ children }: { children: ReactNode }) {
-  const runtimeUrl = import.meta.env.VITE_COPILOT_RUNTIME_URL?.trim();
-  if (!runtimeUrl) return <>{children}</>;
-
-  return (
-    <CopilotKit runtimeUrl={runtimeUrl}>
-      {children}
-      <CopilotPopup />
-    </CopilotKit>
-  );
+  return <>{children}</>;
 }
